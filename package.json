@@ -1,0 +1,14 @@
+{
+  "name": "be-2-surabaya-11",
+  "version": "1.0.0",
+  "description": "Capstone Project BE Group 11",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "nisa.anisafitri@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
