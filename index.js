@@ -4,6 +4,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 const port = 3000;
 
 app.post('/submit-form', (req, res) => {
@@ -11,7 +12,7 @@ app.post('/submit-form', (req, res) => {
 
     console.log("Pesan Berhasil Dikirim:", formData);
 
-    res.json({ message: "Pesan Berhasil Dikirim"});
+    res.json('Pesan Berhasil Dikirim');
 });
 
 app.use(express.static('public'));
