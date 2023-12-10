@@ -1,24 +1,38 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const app = express();
+var con = require('./connection');
+var express = require('express');
+var app = express();
+var path = require('path');
+var bodyParser = require('body-parser');
 
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
+app.use(express.static(__dirname));
 
-app.post('/submit-form', (req, res) => {
-    const formData = req.body;
-
-    console.log("Pesan Berhasil Dikirim:", formData);
-
-    res.json({ message: 'Pesan Berhasil Dikirim'});
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname+'/html css/contact.html'));
 });
 
-app.use(express.static('public'));
+app.post('/submitForm', function(req, res) {
+    var name = req.body.name;
+    var email = req.body.email;
+    var message = req.body.message;
 
-const port = 3000;
+    con.connect(function(err){
+        if(err) throw err;
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server berjalan di http://localhost:${port}`);
+        var sql = "INSERT INTO customers(name, email, message) VALUES ?";
+        var values = [
+            [name, email, message]
+        ];
+
+        con.query(sql, [values], function(err, result) {
+            if(err) throw err;
+            console.log("Number of records inserted: "+result.insertId);
+        });
+    });
+
+    res.redirect('/html css/contact.html');
+});
+
+app.listen(7000 , function() {
+    console.log("Server running at url http://localhost:7000");
 });
