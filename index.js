@@ -8,7 +8,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
 
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname+'/html css/contact.html'));
+    res.sendFile(path.join(__dirname+'/html/contact.html'));
 });
 
 app.post('/submitForm', function(req, res) {
@@ -30,7 +30,7 @@ app.post('/submitForm', function(req, res) {
         });
     });
 
-    res.redirect('/html css/contact.html');
+    res.redirect('/html/contact.html');
 });
 
 app.listen(7000 , function() {
