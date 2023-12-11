@@ -12,7 +12,7 @@ const addContact = async (req, res) => {
         price: req.body.price,
     }
 
-    const room = await Contact.create(info)
+    const contact = await Contact.create(info)
     res.status(200).send(contact)
     console.log(db.contact)
 

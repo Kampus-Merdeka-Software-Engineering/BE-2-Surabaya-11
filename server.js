@@ -17,6 +17,8 @@ app.use(express.urlencoded({ extended: true }))
 const router = require('./routes/roomRoutes.js')
 app.use('/api/rooms', router)
 
+const contactRouter = require('./routes/contactRoutes.js')
+app.use('/api/contacts', contactRouter)
 
 // 
 app.get('/api/rooms', (req, res) => {
