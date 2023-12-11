@@ -1,24 +1,21 @@
 const db = require('../models')
 
+const Room = db.rooms
 const Contact = db.contacts
-
-// create rooms
 
 const addContact = async (req, res) => {
 
     let info = {
-        title: req.body.title,
-        description: req.body.description,
-        price: req.body.price,
+        name: req.body.name,
+        email: req.body.email,
+        message: req.body.message,
     }
 
     const contact = await Contact.create(info)
     res.status(200).send(contact)
-    console.log(db.contact)
+    console.log(contact)
 
 }
-
-// 2. get all room
 
 const getAllContacts = async (req, res) => {
 
@@ -26,16 +23,12 @@ const getAllContacts = async (req, res) => {
     res.status(200).send(contacts)
 }
 
-// 3. get single room
-
 const getOneContact = async (req, res) => {
     
     let id = req.params.id;
     let contact = await Contact.findOne({ where: { id: id } });
     res.status(200).send(contact);
 };
-
-// 4. update products
 
 const updateContact = async (req, res) => {
 
@@ -45,9 +38,6 @@ const updateContact = async (req, res) => {
 
     res.status(200).send(contact)
 }
-
-//5 delete product by id
-
 
 const deleteContact = async (req, res) => {
 
